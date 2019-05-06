@@ -109,7 +109,37 @@ const parent = {
   }
 }
 
+// Class inheritance
 
+class Parent {
+  constructor(name, age){
+    this.name = name;
+    this.age = age;
+    this.hello = function(){
+      return `Hello from ${this.name}, Age: ${this.age}`
+    }
+  }
+}
+
+class Child extends Parent {
+  constructor(name, age){
+    super(name, age);
+  }
+}
+
+class Grandchild extends Child {
+  constructor(name, age){
+    super(name, age);
+  }
+}
+
+
+let parent_class = new Parent("Susan", 70);
+console.log(parent_class.hello())
+let child_class = new Child("George", 50);
+console.log(child_class.hello())
+let grandchild_class = new Grandchild("Sam", 30);
+console.log(grandchild_class.hello())
 
 // Log the parent object's name
 console.log(parent.name);
