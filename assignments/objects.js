@@ -16,30 +16,67 @@ const example = {
   "email": "examples@you.edu",
   "gender": "F"
 }
-
 // Write your intern objects here:
-
+const newInterns = [
+  {
+    id: 1,
+    email: "mmelloy0@psu.edu",
+    name: "Mitzi",
+    gender: "F"
+  },
+  {
+    id: 2,
+    email: "kdiben1@tinypic.com",
+    name: "Kennan",
+    gender: "M"
+  },
+  {
+    id: 3,
+    email: "kmummery2@wikimedia.org",
+    name: "Keven",
+    gender: "M"
+  },
+  {
+    id: 4,
+    email: "gmartinson3@illinois.edu",
+    name: "Gannie",
+    gender: "M"
+  },
+  {
+    id: 5,
+    email: "adaine5@samsung.com",
+    name: "Antonietta",
+    gender: "F"
+  }
+]
 
 // ==== Challenge 2: Reading Object Data ==== 
 // Once your objects are created, log out the following requests from HR into the console:
 
 // Mitzi's name
-
+newInterns[0].name;
 // Kennan's ID
-
+newInterns[1].id;
 // Keven's email
-
+newInterns[2].email;
 // Gannie's name
-
+newInterns[3].name;
 // Antonietta's Gender
-
+newInterns[4].gender;
 // ==== Challenge 3: Object Methods ==== 
 // Give Kennan the ability to say "Hello, my name is Kennan!" Use the console.log provided as a hint.
 // console.log(kennan.speak());
+newInterns[1].hello = function(){
+  return `Hello, my name is ${this.name}`
+}
 
+// console.log(newInterns[1].hello());
 // Antonietta loves math, give her the ability to multiply two numbers together and return the product. Use the console.log provided as a hint.
 //console.log(antonietta.multiplyNums(3,4));
-
+newInterns[4].multiplyNums = function(number1, number2){
+  return number1 * number2;
+}
+// console.log(newInterns[4].multiplyNums(3, 4));
 // === Great work! === Head over to the the arrays.js file or take a look at the stretch challenge
 
 // ==== Stretch Challenge: Nested Objects and the this keyword ==== 
@@ -49,16 +86,70 @@ const example = {
 // 3. Nest a grandchild object in the child object with properties for name and age.  The name will be Sam and the age will be 30
 // 4. Give each of the objects the ability to speak their names using the this keyword.
 
-const parent = {}
+// Basic
+const parent = {
+  name: "Susan",
+  age: 70,
+  hello: function(){
+    return `Hello from ${this.name}`
+  },
+  child: {
+    name: "George",
+    age: 50,
+    hello: function(){
+      return `Hello from ${this.name}`
+    },
+    grandchild: {
+      name: "Sam",
+      age: 30,
+      hello: function(){
+        return `Hello from ${this.name}`
+      }
+    }
+  }
+}
+
+// Class inheritance
+
+class Parent {
+  constructor(name, age){
+    this.name = name;
+    this.age = age;
+    this.hello = function(){
+      return `Hello from ${this.name}, Age: ${this.age}`
+    }
+  }
+}
+
+class Child extends Parent {
+  constructor(name, age){
+    super(name, age);
+  }
+}
+
+class Grandchild extends Child {
+  constructor(name, age){
+    super(name, age);
+  }
+}
+
+
+let parent_class = new Parent("Susan", 70);
+console.log(parent_class.hello())
+let child_class = new Child("George", 50);
+console.log(child_class.hello())
+let grandchild_class = new Grandchild("Sam", 30);
+console.log(grandchild_class.hello())
 
 // Log the parent object's name
-
+console.log(parent.name);
 // Log the child's age
-
+console.log(parent.child.age);
 // Log the name and age of the grandchild
-
+console.log(parent.child.grandchild.name, parent.child.grandchild.age);
 // Have the parent speak
-
+console.log(parent.hello());
 // Have the child speak
-
+console.log(parent.child.hello());
 // Have the grandchild speak
+console.log(parent.child.grandchild.hello());
